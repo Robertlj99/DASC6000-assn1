@@ -1,0 +1,693 @@
+---
+title: "DASC 6000: Written Assignment 01"
+author: "V.N. Gudivada"
+date: today
+format:
+  html:
+    embed-resources: true
+    toc: true
+    toc-depth: 2
+    toc-expand: 2
+    toc-title: Contents
+    toc-location: right
+    number-sections: true
+    number-depth: 2
+    html-math-method: katex
+  # tufte::tufte_html: default
+# bibliography: dasc-6000.bib 
+# csl: ieee-with-url.csl
+# linkcolor: red
+# urlcolor: blue
+# link-citations: yes
+---
+
+# Assignment Goal {.unnumbered}
+
+The overarching goal for this assignment is to assess your understanding of basic combinatorics and set theory.
+
+# Combinatorics Sum Rule 1 (p1)
+
+Define the combinatorics sum rule.
+
+If there are multiple mutually exclusive ways to perform a task, then the number of ways to do the task is the sum of the number of mutually exclusive ways.
+I.E., Given task $T$ and solution sets $N_1$ and $N_2$ where $N_1 \cap N_2 = \emptyset$, the number of ways to solve $T$ is $|N_1| + |N_2|$, I.E.
+$$
+\begin{aligned}
+\vert T \vert = \vert N_1 \vert + \vert N_2 \vert
+\end{aligned}
+$$
+
+# Combinatorics Sum Rule 2 (p2)
+
+A couple can choose a name for a newborn baby from one of three lists. The three lists contain 45, 15, and 100 names, respectively. No name is on more than one list. How many possible names are there to choose from?
+
+$$
+45 + 15 + 100 = 160
+$$
+
+# Combinatorics Sum Rule 3 (p3)
+
+A password is 8 to 10 characters long. A character is an uppercase letter or a digit. A password must contain at least one digit. How many possible passwords are there? Hint: use the sum rule.
+
+*Subtracting out passwords that do not contain a digit
+
+$$
+total = (36^{8} - 26^{8}) + (36^{9} - 26^{9}) + (36^{10} - 26^{10}) = 3.614 \cdot 10^{15}
+$$
+
+
+# Combinatorics Product Rule 1 (p4)
+
+State the combinatorics product rule.
+
+If a procedure, $P$, can be broken down into a procedure of two tasks, and there is a set of ways, $N_1$, for the first task and a set of ways, $N_2$, for the second task then there are $|N_1| * |N_2|$ ways to do the task
+$$
+\vert P \vert = \vert N_1 \vert \cdot \vert N_2 \vert
+$$
+
+# Combinatorics Product Rule 2 (p5)
+
+Consider the problem of replacing the current license plate format $ABCD-1234$ (4 letters followed by 4 digits) with a sequence of any $k$ symbols, each of which can be either a letter or a digit. How large must $k$ be so that the new format has at least as many options as the old format?
+
+Number of old license plates $= 26 \cdot 26 \cdot 26 \cdot 26 \cdot 10 \cdot 10 \cdot 10 \cdot 10 = 26^{4} \cdot 10^{4}$
+    
+Assume that the new license plate has $k$ number of symbols (we need to determine this value).    
+    
+
+Number of license plates containing $k$ symbols = $36^{k}$    
+    
+
+We want to enure that:    
+    
+$$
+\begin{aligned}
+36^{k} \geq & 26^{4} \cdot 10^{4} \\
+36^{k} \geq & 4569760000 \\
+\log _{36}\left(36^{k}\right) \geq & \log _{36}(4569160000) \\
+k  \geq & 6.206951
+\end{aligned}
+$$
+    
+
+Choose $k=7$.
+
+**Another way to include an answer**
+    
+If you hand write your solution, scan and create a graphics file (say, PNG format). The following code will insert your solution into the output document:
+    
+<center>
+
+![Solution to problem number 5](problem-5-solution.png)
+
+</center>
+
+I'm a bit confused it seems like you have given the answer $k \ge 7$
+    
+
+# What Combinatorics Rule Is This? (p6)
+
+There are $n / d$ ways to do a task if it can be done using a procedure that can be carried out in $n$ ways, and for every way $w$, exactly $d$ of the $n$ ways correspond to way $w$. What is the name of this rule?
+
+The definition above describes the Division Rule (aka Quotient Rule)
+
+# Permutations (p7)
+
+How many permutations of the letters ABCDEFGHIJ contain the string ABC ?
+
+Given that the string must contain the substring ABC we can let X = ABC, then the problem becomes how many permutations are there of the string XDEFGHIJ, which is equal to $8! = 40,320$
+
+# Combinatorics Product Rule  (p8)
+
+France used to have license plates that contain codes of any of the following forms:
+
+(a) digit-digit-digit-letter-digit-digit.
+    
+$$
+26 \cdot 10^5 = 2,600,000
+$$
+    
+(a) digit-digit-digit-letter-letter-digit-digit,  where the first letter is alphabetically $\le$ P.
+    
+$$
+16 \cdot 26 \cdot 10^5 = 416 \cdot 10^5 = 41,600,000
+$$
+    
+(a) digit-digit-digit-digit-letter-letter-digit-digit, where the first letter is alphabetically $\ge$ Q.
+    
+$$
+26 \cdot 10^7 = 260,000,000
+$$
+    
+(a) digit-digit-digit-letter-letter-letter-digit-digit
+
+$$
+26^2 \cdot 10^5 = 676 * 10^5 = 67,600,000
+$$
+
+    How many license plates, in total, met the above requirements?
+
+    I'm assuming you're reffering to the requirements listed in problem 5 if so it must have more than 4,569,160,000 possible combinations. All listed formats above     have less than a billion solutions so none would meet the requirements in problem 5
+
+
+# Combinatorics Product and Sum Rules (p9)
+
+A computer system allows numerical passwords of length 3, 4, or 5 digits. How many passwords are possible?
+
+
+$$
+10^3 + 10^4 + 10^5 = 111,000
+$$
+
+
+# Combinatorics Product Rule? (p10)
+
+During the Ebola crisis, geneticists were working to trace the spread of the disease. They acquired DNA samples of the viruses from a number of patients, and affixed a unique *tag* to each patient's sample. A tag is a sequence of 8 nucleotides — each an element of {A, C, G, T} -- attached to the end of a virus sample from each patient, so that subsequently it will be easy to identify the patient associated with a particular sample. How many different such tags are possible?
+
+$$
+4 \cdot 4 \cdot 4 \cdot 4 \cdot 4 \cdot 4 \cdot 4 \cdot 4 = 4^8 = 65,536
+$$
+
+# Combinatorics Product Rule? (p11)
+
+You were given a handwritten password to a computer system. The password was written as: a154bc0401011. But you couldn't tell from the handwriting whether each ``1" was 1 (one), l (ell), or I (eye); or whether ``0" was 0 (zero) or O (oh). How many possible passwords would you have to try to get access?
+
+There are 4 1's and 3 0's. There are 3 possible solutions to each 1 and 2 for each 0. The problem for 1 is then $3 \cdot 3 \cdot 3 \cdot 3 = 3^4$ and it follows the problem for 0 is then $2 \cdot 2 \cdot 2 = 2^3$. Since you know the rest of the characters you will have to try $3^4 \cdot 2^3 = 648$ different variations of the password to attempt every combination
+
+# Combinatorics Sum Rule
+
+Using the \emph{sum rule} argue that for any sets $A$ and $B$, 
+$$
+\vert A \cup B \vert = \vert A - B \vert  + \vert B - A \vert  + \vert A \cap B \vert
+$$
+The sum rule states that if a set $S$ can be partitioned into disjoint subsets $S_1,S_2,\dots,S_n$ then the size of $S$ is equal to the sum of the sizes of these subsets, that is
+$$
+\vert S \vert = \vert S_1 \vert + \vert S_2 \vert + \dots + \vert S_n \vert
+$$
+Logically, the set $A \cup B$ can be broken down into three disjoint sets:
+1. Elements exclusive to A, $A - B$
+2. Elements exclusive to B, $B - A$
+3. Elements shared by both A and B, $A \cap B$
+
+Thus the set $A \cup B$ is equivalent to the three sets listed above, i.e.
+$$
+A \cup B == (A - B) + (B - A) + (A \cap B) 
+$$
+Since these three sets are disjoint, and are a complete partitioning of the set $A \cup B$, the sum rule can be applied to it. This means that the size of the set $A \cup B$ is equal to the size of its three partitions listed above. i.e.
+$$
+\vert A \cup B \vert = \vert A - B \vert + \vert B - A \vert + \vert A \cap B \vert
+$$
+
+# Combinatorics Sum and Product Rule?
+
+How many 100-bit strings have at most 2 ones?
+
+Break the problem down into cases.
+
+String with zero 1's:
+- Entire string must be composed of 0's, only 1 string fits this definition.
+$$
+\binom{100}{0} = 1
+$$
+String with one 1:
+- Choose one position out of the 100 possible to place the one, problem becomes 100 pick 1
+$$
+\binom{100}{1} = 100
+$$
+String with two 1's:
+- Choose 2 positions out of the 100 possible places to place them, problem is now 100 pick 2
+$$
+\binom{100}{2} = \frac{100!}{2!(100-2)!}=4950
+$$
+Any strings with more than two 1's do not fit the solution definition, therefore the number of 100 bit strings possible is thus the sum of the 3 distinct cases listed above.
+$$
+\binom{100}{0} + \binom{100}{1} + \binom{100}{2} = 1 + 100 + 4950 = 5051
+$$
+
+# Combinatorics Sum and Product Rule?
+
+Unicode supports hundreds of thousands of characters from many languages. A very common encoding scheme for Unicode, called UTF-8, uses a variable number of bits to represent different characters (with more commonly used characters using fewer bits). Valid UTF-8 characters can be of any of the following forms, using 1, 2, 3, or 4 bytes, and have one of the following forms (where x represents an arbitrary bit):
+
+(a) 0xxxxxxx
+    
+    Seven bits to choose, using product rule
+$$
+2^7 = 128
+$$
+(a) 110xxxxx 10xxxxxx
+    
+    Five bits to choose from in the first string and six bits in the second, thus there are eleven total bits to choose from, use product rule
+$$
+2^{11} = 2048
+$$
+    
+(a) 1110xxxx 10xxxxxx 10xxxxxx
+    
+     Four bits in the first string, six bits in the second two, gives 16 total bits. Same process as last question
+$$
+2^{16} =  65,536
+$$
+    
+ (a) 11110yyy 10yyxxxx 10xxxxxx 10xxxxxx, with a further restriction: the first five bits (non-consecutively marked yyyyy) must be either of the form 0xxxx or 10000. The $i^{\text{th}}$ character in the Unicode character set is encoded by the $i^{\text{th}}$ legal UTF-8 representation, resulting from converting $i$ into binary and filling in the x (and y) bits from the templates. How many characters can be encoded using UTF-8?
+
+     Break down into cases again:
+1. $yyyyy = 0xxxx$
+- 4 bits to choose from thus $2^4 = 16$ choices
+- For each choice of $yyyyy$ the remaining 16 x bits can be configured in $2^{16}$ possible ways
+- Thus, for case 1 there are $16 \cdot 2^{16}$ valid configurations
+
+2. $yyyyy = 10000$
+- Only 1 configuration
+- following case 1, we have $1 \cdot 2^{16}$ valid configurations
+
+Putting it together we have 
+$$
+16 \cdot 2^{16} + 1 \cdot 2^{16} = 17 \cdot 2^{16} = 1,114,112
+$$
+
+# Principle of Inclusion and Exclusion 1
+
+The combinatorics subtraction rule is based on the principle of inclusion and exclusion. Define the principle of inclusion and exclusion.
+
+The principle of inclusion and exclusion is used when counting the number of elements in the union of two or more sets, especially when they may overlap.The principle aims to carefully balance the inclusion and exclusion of the overlapping elements of the sets. It can be broken down into the following steps
+
+1. Sum the sizes of all individual sets
+$$
+\sum_{1 \le i \le n} \vert A_i \vert
+$$
+2. Subtract the sizes of all pairwise intersections
+$$
+(\sum_{1 \le i \le n} \vert A_i \vert) - (\sum_{1 \le i < j \le n} \vert A_i \cap A_j \vert)
+$$
+3. Add back the sizes of all triple intersections
+$$
+(\sum_{1 \le i \le n} \vert A_i \vert) - (\sum_{1 \le i < j \le n} \vert A_i \cap A_j \vert) + (\sum_{1 \le i < j < k \le n} \vert A_i \cap A_j \cap A_k \vert)
+$$
+4. Continue this processing subtracting every even intersection and adding back the odd ones until done with all n sets
+
+
+When dealing with just two sets, A and B, the principle follows as
+$$
+\vert A \cup B \vert = \vert A \vert + \vert B \vert - \vert A \cap B \vert
+$$
+- Firstly, all the elements from each set is added, we know we have now included every possible element
+- Secondly, we remove the elements found in both A and B, this removes any elements that were in both sets and counted twice during the first step
+
+When dealing with three sets, A, B, and C, the principle follows as
+$$
+\vert A \cup B \cup C \vert = \vert A \vert + \vert B \vert + \vert C \vert - \vert A \cap B \vert - \vert A \cap C \vert - \vert B \cap C \vert + \vert A \cap B \cap C \vert
+$$
+- Firstly, include every possible element from each set
+- Secondly, remove any elements found in multiple sets, if any element was found in just two of the sets it will now have been added twice and removed once
+- Thirdly, if any element was included in all three sets it was added three times and removed three times therefore we must add back any elements that are shared by all three of the sets
+
+When dealing with four sets, A, B, C, and D, it follows as
+$$
+\vert A \cup B \cup C \cup D \vert = \vert A \vert + \vert B \vert + \vert C \vert + \vert D \vert - \vert A \cap B \vert - \vert A \cap C \vert - \vert A \cap D \vert - \vert B \cap C \vert - \vert B \cap D \vert - \vert C \cap D \vert + \vert A \cap B \cap C \vert + \vert A \cap B \cap D \vert + \vert A \cap C \cap D \vert + \vert B \cap C \cap D \vert - \vert A \cap B \cap C \cap D \vert
+$$
+- Firstly, include all elements 
+- Next, remove any elements found in two or more sets, any elements originally added twice will now only be up here once
+- Any elements that appear 3 or more times will have been completely removed during the previous step, now we add them back
+- Any elements appearing in all four sets will have been added back twice, the last step removes any duplicates
+
+# Principle of Inclusion and Exclusion 2
+
+How many bit strings of length eight either start with a 1 bit or end with the two bits 00?
+
+Let A be the set of strings beginning with a 1, and B be the set of strings ending with 00. According to PIE the problem is then
+$$
+\vert A \cup B \vert = \vert A \vert + \vert B \vert - \vert A \cap B \vert
+$$
+Need to find $\vert A \vert$
+- 7 bits to fill in giving $2^7 = 128 = \vert A \vert$, now we have
+$$
+\vert A \cup B \vert = 128 + \vert B \vert - \vert A \cap B \vert
+$$
+Need to find $\vert B \vert$
+- 6 bits to fill in giving $2^6 = 64 = \vert B \vert$, now have
+$$
+\vert A \cup B \vert = 128 + 64 - \vert A \cap B \vert
+$$
+Lastly, need to find $\vert A \cap B \vert$
+- A bit string that is in both A and B must start with 1 and with 00, leaving us five bits to fill in giving $2^5 = 32 = \vert A \cap B \vert$
+
+Now with everything
+$$
+\vert A \cup B \vert = 128 + 64 - 32 = 160
+$$
+
+
+# Principle of Inclusion and Exclusion 3
+
+Using the inclusion-exclusion expression for $\vert A \cup B \cup C \cup D \vert$, compute the number of integers between 1 and 10,000, inclusive, are divisible by at least one of 2, 3, 5, or 7?
+
+Note on logic for this, I am thinking that to find how many numbers between 1 and 10,000 is divisible by x i can do the equation $\lfloor \frac{10,000}{x} \rfloor$ and to find how many are divisible by x and y find the Lowest Common Multiple(LCM) and do $\lfloor \frac{10,000}{LCM(x,y)} \rfloor$
+
+1. Define the sets: Let A be numbers divisible by 2, B by 3, C by 5, and D by 7
+2. Define the equation, following PIE for 4 sets
+$$
+\vert A \cup B \cup C \cup D \vert = \vert A \vert + \vert B \vert + \vert C \vert + \vert D \vert - \vert A \cap B \vert - \vert A \cap C \vert - \vert A \cap D \vert - \vert B \cap C \vert - \vert B \cap D \vert - \vert C \cap D \vert + \vert A \cap B \cap C \vert + \vert A \cap B \cap D \vert + \vert A \cap C \cap D \vert + \vert B \cap C \cap D \vert - \vert A \cap B \cap C \cap D \vert
+$$
+3. Calculate the size of each set
+$$
+\vert A \vert = \lfloor \frac{10,000}{2} \rfloor = 5000 \\
+\vert B \vert = \lfloor \frac{10,000}{3} \rfloor = 3333 \\
+\vert C \vert = \lfloor \frac{10,000}{5} \rfloor = 2000 \\
+\vert D \vert = \lfloor \frac{10,000}{7} \rfloor = 1428
+$$
+4. Calculate the size of each pairwise intersection
+$$
+\vert A \cap B \vert = \lfloor \frac{10,000}{6} \rfloor = 1666 \\
+\vert A \cap C \vert = \lfloor \frac{10,000}{10} \rfloor = 1000 \\
+\vert A \cap D \vert = \lfloor \frac{10,000}{14} \rfloor = 714 \\
+\vert B \cap C \vert = \lfloor \frac{10,000}{15} \rfloor = 666 \\
+\vert B \cap D \vert = \lfloor \frac{10,000}{21} \rfloor = 476 \\
+\vert C \cap D \vert = \lfloor \frac{10,000}{35} \rfloor = 285 
+$$
+5. Calculate the size of each triple intersection
+$$
+\vert A \cap B \cap C \vert = \lfloor \frac{10,000}{30} \rfloor = 333 \\
+\vert A \cap B \cap D \vert = \lfloor \frac{10,000}{42} \rfloor = 238 \\
+\vert A \cap C \cap D \vert = \lfloor \frac{10,000}{70} \rfloor = 142 \\
+\vert B \cap C \cap D \vert = \lfloor \frac{10,000}{105} \rfloor = 95 
+$$
+6. Calculate the size of each quadruple intersection
+$$
+\vert A \cap B \cap C \cap D \vert = \lfloor \frac{10,000}{210} \rfloor = 47
+$$
+7. Substitute values into equation and solve
+$$
+\vert A \cup B \cup C \cup D \vert = 5000 + 3333 + 2000 + 1428 - 1666 - 1000 - 714 - 666 - 476 - 285 + 333 + 238 + 142 + 95 - 47 \\
+= 11761 - 4807 + 808 -47 \\
+= 7715
+$$
+
+# Principle of Inclusion and Exclusion 4
+
+There were 350 students at a campus party, of which 220 major in computer science, 147 major in data science, and 51 majored both in computer science and in data science. How many of the students majored neither in computer science nor in data science?
+
+Let A be students, at the party, majoring in comp sci and B be students majoring in data sci, then $A \cap B$ is the set of students majoring in both fields. If P is the set of students at the party, and C is the set of students at the party majoring in neither, then if follows that the equation we want to solve is
+$$
+\vert C \vert = \vert P \vert - \vert A \cup B \vert \\
+\vert C \vert = \vert P \vert - (\vert A \vert + \vert B \vert - \vert A \cap B \vert) \\
+\vert C \vert = 350 - (220 + 147 - 51) \\
+\vert C \vert = 350 - 316 \\
+\vert C \vert = 34
+
+$$
+
+# Principle of Inclusion and Exclusion 5
+
+A bank allows 4-digit PINs, but does not permit a PIN that starts with the same digit repeated twice (for example, 9930) or ends with the same digit repeated twice (for example, 0199). Now how many invalid PINs are there?
+
+Let A be the set of pins that start with the same digit twice, B be the set of pins that end with the same digit twice, meaning $\vert A \cup B \vert$ represents the number of all invalid pins. Our equation is now
+$$
+\vert A \cup B \vert = \vert A \vert + \vert B \vert - \vert A \cap B \vert
+$$
+
+A pin in set A has the form xxyz, where x is the same digit, this means we have three spots to choose and 10 choices for each spot giving
+$$
+\vert A \vert = 10 \cdot 10 \cdot 10 = 1,000
+$$
+A pin in the set B has the form yzxx, again giving us three spots to choose each with 10 possible choices giving
+$$
+\vert B \vert = 10 \cdot 10 \cdot 10 = 1,000
+$$
+A pin in both sets A and B has the form xxyy, this time only giving us two spots to choose still with 10 choices giving
+$$
+\vert A \cap B \vert = 10 \cdot 10 = 100
+$$
+Substituting into the equation gives
+$$
+\vert A \cup B \vert = 1,000 + 1,000 - 100 = 1,900
+$$
+
+# Principle of Inclusion and Exclusion 6
+
+As an approximation, English \emph{syllables} consist of an \emph{onset} that is either one of 25 \emph{consonants} or a cluster of any two of these consonants, followed by one of 16 \emph{vowels}, followed optionally by one of 25 \emph{consonants}. How many syllables are there?
+
+I'm not entirely sure I understand this question but will attempt to answer it the best I can understand it. I don't see where I am using exclusion though during this problem rather its just sum and product rule.
+
+Let S be the set of all possible syllables,
+Three parts:
+1. Onset - A
+2. vowel - B
+3. optional consonant - C
+
+1. Let A be the set of possible onsets. Two possibilities:
+- A is a single consonant, 25 possible choices, thus $25^1 = 25$ possibilities
+- A is two consonants, 25 choices for the first and 25 for the second (not exclusive), thus $25^2 = 625$ possibilities
+- Sum rules tells us the total number of possible onsets is
+$$
+\vert A \vert = 25 + 625 = 650
+$$
+2. Let B be the set of possible vowels
+- Simply 1 decision with 16 choices here
+$$
+\vert B \vert = 16
+$$
+3. Let C be the set of optional consonants. Two possibilities:
+- It isn't included, just leaves 1 possibility
+- It is included giving us 1 choice with 25 options $25^1 = 25$
+- Sum rule tells us the total number of possible optional consonants is 
+$$
+\vert C \vert = 25 + 1 = 26
+$$
+Putting it all together each syllable consists of three choices A, B, and C. The product rule tells us then that the set of all possible syllables, S, equals
+$$
+\vert S \vert = \vert A \vert \cdot \vert B \vert \cdot \vert C \vert \\
+\vert S \vert = 650 \cdot 16 \cdot 26 = 270,400
+$$
+
+
+# Principle of Inclusion and Exclusion 7
+
+A palindrome reads the same forward and backward. How many 6-letter palindromes (elements of $\{ A, B, \ldots, Z \}^6$) are there?
+
+A six letter word, P, of the form abcdef, using arbitrary letters, can only be a palindrome if it follows the following conditions
+$$
+P = abcdef \\
+a = f \\ b = e \\ c = d
+$$
+Meaning that if the word is a palindrome it can be rewritten in the form 
+$$
+P = abccba
+$$
+This gives us 3 decisions each with 26 choices, since a, b, and c can be independently chosen. Assuming that these palindromes don't actually have to be words in the dictionary, the product rule tells us the number of possible palindromes is equal to
+$$
+\vert a\vert \cdot \vert b \vert \cdot \vert c \vert = 26 \cdot 26 \cdot 26 = 26^3 = 17,576
+$$
+
+# Pigeon Hole Pronciple
+
+Suppose that we place $1,234$ items into $17$ buckets. We call the number of items in a bucket as its occupancy. Also, the maximum occupancy is the number of items in the most-occupied bucket. What is the smallest possible maximum occupancy? Hint: use the *division rule*.
+
+Calculate the lower bound
+$$
+\lfloor \frac{1,234}{17} \rfloor = 72
+$$
+This means each bucket must have at least 72 items, there are still ten remaining items however. Meaning 10 buckets will have to have 73 items and 7 will have only 72.
+$$
+Max Occupancy = 73
+$$
+
+# Combinatorics Product Rule
+
+Use the product rule to show that the number of different subsets of a finite set $S$ is $2^{\mid S \mid}$, where $\mid S \mid$ denotes the size/cardinality of $S$.
+
+Let $\vert S \vert = n$.
+
+When forming a subset of S, for each element, $S_i \in S$, there are two choices:
+1. Include $S_i$ in the subset
+2. Exclude $S_i$ from the subset
+
+Let forming the subset be the task T. Since the inclusion or exclusion of any element in S is independent of the rest, the task T can then be broken down into n independent sequential choices.Let $m$ represent each choices number of options, since we broke down the choices for each element above we know that each choice has two options. The product rule thus tells us that the number of ways to perform the task T, $\vert T \vert$, is equal to
+$$
+\vert T \vert = m_1 \cdot m_2 \cdot \ldots \cdot m_n \\
+\vert T \vert = 2 \cdot 2 \cdot \ldots \cdot 2 \\
+\vert T \vert = 2^n \\
+\vert T \vert = 2^{\vert S \vert}
+$$
+
+
+# Permutations and Combinations 1
+
+How many ways are there to choose 32 objects out of 202 if:
+
+(a) repetition is allowed and order matters?
+    
+    In this case each of the 32 positions can be filled out by any of the 202 objects, i.e. there are 32 independent sequential choices each with 202 options. Let C     be the set of all choices, the sum rule follows as
+$$
+\vert C \vert = 202^{32} \approx 5.91 \cdot 10^{73}
+$$
+    
+(a) repetition is forbidden and order matters?
+    
+    In this case the first choice will have n options and each subsequent choice will have 1 fewer option than the last. This problem is defined by the permutation     rule which states
+$$
+P(n,k) = \frac{n!}{(n-k)!} \\ P(202,32) = \frac{202!}{(202-32)!} \\  P(202,32) = \frac{202!}{170!} \\ \approx 4.41 \cdot 10^{72} 
+$$
+    
+(a) repetition is allowed and order doesn’t matter?
+
+(Stars and bars w/ bits + an array)
+Let a 0 represent a (future) choice. Imagine each object as a a spot in an array of size 202, let a 1 represent the decision to move to the next spot in the array. In order to build every possible sub-array of size 32 from your array you might start on the first spot in the array and decide to either select it, and mark it with a 0, select it multiple times and mark it with several 0's (up to 32), or not select it, and not mark it with a 0. After deciding to select it, or not, you have to move to the next spot to decide on it, marking your progress along the way with a 1. At the end of this process, you wind up with an arbitrary string of length 233 with 32 0's and 201 1's. Furthermore, any bit string matching that criteria is a valid solution, given the rules of this question. Finally, our problem can now be reduced to Choosing 32 0's out of 233 spots in our string, or rather choosing 201 1's out of 233 spots, recall that $\binom{n}{k} = \binom{n}{n-k}$ so both ways are equivalent. Let W be the set of ways to choose.
+$$
+\vert W \vert = \binom{233}{32} = \binom{233}{201} \approx 2.32 \cdot 10^{39}
+$$
+
+(a) repetition is forbidden and order doesn’t matter?
+    
+    With repetition forbidden this problem is like the last but much simpler. Imagine the same scenario of stepping through the array of possible objects and           picking 32 0's. This time however, there is no need for 1's to count the steps, this is because each selection is unique, you are simply picking 32 spots out of     the 202 spots in the array to place a 0. This problem reduces then to 202 choose 32, again let W be the set of ways to choose.
+$$
+\vert W \vert = \binom{202}{32} \approx 1.68 \cdot 10^{37}
+$$
+    
+
+# Permutations and Combinations 2
+
+How many different solutions are there to the equation $a + b + c + d + e = 8$, where all of $\{a, b, c, d, e\}$ have to be nonnegative integers?
+
+(Stars and bars w/ bits again)
+Imagine a, b, c, d, and e, to each be a spot in an array respectively. We have 8 0's (stars) to distribute between the 5 spots, and since they only have to be nonnegative a spot can have 0 stars. Let a 1 represent us moving from one spot in the array to the next. Perform the same operations as last time. One possible permutation could be 001000101100 which corresponds with a=2, b=3, c=1, d=0, e=2. Any bit string of length 12 w/ 8 0's and 4 1's will be a valid solution. Therefore our problem reduces to 
+$$
+\vert P \vert = \binom{12}{4} = \binom{12}{8} = 495
+$$
+
+# Combinatorial Proof 1
+
+True or false: A combinatorial proof of an identity is a proof that uses counting arguments to prove that both sides of the identity count the same objects but in different ways.
+
+True
+
+# Combinatorial Proof 2
+
+True or false: A combinatorial proof of an identity is a proof that is based on showing that there is a bijection between the sets of objects counted by the two sides of the identity.
+
+True, it can be
+
+# Permutations and Combinations 3
+
+How many bit strings of length $n$ contain exactly $r$ 1s?
+
+For any given n and r, you will wind up having to choose r 1's out of n possible spots, i.e. n choose r. This problem can be solved using the binomial coefficient
+$$
+\binom{n}{r}
+$$
+
+# Combinatorial Proof 3
+
+Prove that $k \binom{n}{k} = n \binom{n-1}{k-1}$ using an algebraic or a combinatorial proof.
+
+Algebraic proof (i'm going to skip some trivial steps):
+Left side
+$$
+k\binom{n}{k} = \frac{k \cdot n!}{k!(n-k)!}
+$$
+we can rewrite $k!$ as $k \cdot (k-1)!$ and simplify
+$$
+\frac{k \cdot n!}{k \cdot (k-1)!(n-k)!} = \frac{n!}{(k-1)!(n-k)!}
+$$
+Right side
+$$
+n \binom{n-1}{k-1} = \frac{n \cdot (n-1)!}{(k-1)!(n-k)!}
+$$
+inversly from the left side we can rewrite the $n \cdot (n-1)!$ as simply $n!$, then we have shown that
+$$
+n \binom{n-1}{k-1} = \frac{n!}{(k-1)!(n-k)!} \equiv \frac{n!}{(k-1)!(n-k)!} = k\binom{n}{k}
+$$
+
+
+# Proving an Algebraic Identity
+
+Prove the following identity using the Binomial theorem: $$\sum_{k=0}^n (-1)^k \binom{n}{k} = 0$$
+
+Binomial Theorem: $$(x+y)^n = \sum^n_{k=0} \binom{n}{k} x^{n-k}y^{k} $$
+
+Let x = 1 and y = -1
+$$
+(1 + (-1))^n = \sum^n_{k=0} \binom{n}{k} 1^{n-k}(-1)^k
+$$
+Left side
+$$
+(1+(-1)^n) = 0^n = 0
+$$
+for any positive n
+
+Right side
+$$
+1^{n-k} = 1
+$$
+can be dropped from equation
+
+Results in (each line is a further simplification)
+$$
+0 = \sum^n_{k=0} \binom{n}{k}(-1)^k \\ \equiv \\ 0 = \sum^n_{k=0} (-1)^k \binom{n}{k} \\ \equiv \\ \sum^n_{k=0} (-1)^k \binom{n}{k} = 0
+$$
+
+
+# Combinatorics Problem
+
+Suppose that there are 10 students in the chemistry dept and 20 in the computer science dept. How many ways are there to select a committee if the committee is to consist of 5 from the chemistry dept and 8 from the computer science dept?
+
+Let X be the set of students from the chemistry dept, and Y be the set from comp sci, further x is a member of the set X, and y of set Y. Let C be the set of possible committee selections.
+
+A committee in the set C must have the form $\{x,x,x,x,x,y,y,y,y,y,y,y,y\}$, that is it must have 5 x's and 8 y's, where order doesn't matter and repetitions are forbidden. 
+
+For each possible selection of $x \in X$ then, we are working with selecting 5 from 10. This reduces to the binomial coefficient 
+$$\binom{10}{5} = 252$$ 
+For each possible selection of $y \in Y$ then, it is the same as with x, except 8 from 20
+$$\binom{20}{8} = 125,970$$
+C then can be broken down into sequential independent choices, the product rule follows
+$$\vert C \vert = \binom{10}{5} \cdot \binom{20}{8} = 252 \cdot 125,970 = 31,744,440$$
+
+# Binomial Theorem 1
+
+Using the binomial theorem, write the expansion of $(x+y)^{4}$?
+
+$$
+(x+y)^4 = \sum^4_{k=0} \binom{4}{k} x^{4-k}y^{k}
+$$
+Expand step through step with k
+$$
+k = 0: \binom{4}{0}x^{4}y^{0} = 1 \cdot x^4 = x^4 \\
+k = 1: \binom{4}{1}x^{3}y^{1} = 4 \cdot x^3 y^1 \\
+k = 2: \binom{4}{2}x^{2}y^{2} = 6 \cdot x^2 y^2 \\
+k = 3: \binom{4}{3}x^{1}y^{3} = 4 \cdot x y^3 \\
+k = 4: \binom{4}{4}x^{0}y^{4} = 1 \cdot y^4 = y^4
+$$
+Put everything together
+$$
+(x+y)^4 = x^4 + 4 x^3 y + 6 x^2 y^2 + 4 x y^3 + y^4
+$$
+
+# Binomial Theorem 2
+
+What is the coefficient of $x^{12} y^{13}$ in the expansion of $(x+y)^{25}$?
+
+$$(x+y)^{25} = \sum^25_{k=0} \binom{25}{k} x^{25-k}y^{k}$$
+We want to find the coefficient where $k = 13$, due to $y^13$ and $x^{25-13=12}$.
+$$
+\binom{25}{13} = 5,200,300
+$$
+
+
+# Binomial Theorem 3
+
+Using the binomial theorem, show that
+$$\sum_{k=0}^{n} \binom{n}{k}=2^{n}$$
+Binomial Theorem: $$(x+y)^n = \sum^n_{k=0} \binom{n}{k} x^{n-k}y^{k} $$
+
+Let x and y = 1
+$$
+(1+1)^n = \sum^n_{k=0} \binom{n}{k}
+$$
+
+Left side
+$$
+(1+1)^n = 2^n
+$$
+Finally we have
+$$
+2^n = \sum^n_{k=0} \binom{n}{k}
+$$
+Proving the first equation.
